@@ -3,14 +3,14 @@ import React, { useState }  from 'react';
 const Certificate = ({certificate}) => {
 
   const [myCertificatesVer, setMyCertificatesVer] = useState(1);
-  const [etiquetaMas, setEtiquetaMas] = useState('Ver Menos -');
+  const [etiquetaMas, setEtiquetaMas] = useState('ver-mas fa fa-arrow-up');
 
   const verMas = () =>{
     if(myCertificatesVer){
       setMyCertificatesVer(0);
-      setEtiquetaMas('Ver Mas +');
+      setEtiquetaMas('ver-mas fa fa-arrow-down');
     }else{
-      setEtiquetaMas('Ver Menos -');
+      setEtiquetaMas('ver-mas fa fa-arrow-up');
       setMyCertificatesVer(1);
     }
   }
@@ -35,10 +35,8 @@ const Certificate = ({certificate}) => {
     <div className='title mt-4'>
       <i className='fa fa-trophy'></i>
       <h2 className="mt-4">
-        CERTIFICATES
-        <button className="ver-mas btn btn-primary" onClick={ verMas }>
-            { etiquetaMas }
-        </button>
+        CERTIFICADOS
+        <i className={ etiquetaMas } onClick={ verMas } style={{float: 'right'}}></i>
       </h2>
         { myCertificates() }
     </div>

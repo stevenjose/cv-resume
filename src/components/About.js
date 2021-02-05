@@ -8,7 +8,7 @@ export const About = ({avatar, name, profession, bio, address, social, email}) =
       <div className='avatar'>
         <img src={avatar} alt={name} />
       </div>
-      <div className='title'>
+      <div className='title mt-4'>
         <h1>{name}</h1>
         <h2>{profession}</h2>
       </div>

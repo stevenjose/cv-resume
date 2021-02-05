@@ -13,9 +13,9 @@ function App() {
     profession: 'Full Stack Developer',
     bio: 'Desarrollador de Aplicaciones móviles y web Mi experiencia: '+
         'He participado en proyectos pequeños, medianos y grandes, bajo estándares de calidad.' +
-        'Tanto como en la banca como en empresas privadas, con más de 9 años de experiencia en área de desarrollo de software, '+
-        'participando en todas sus fases. Experiencia en desarrollo de aplicaciones con Angular, Ionic, Vue, NodeJs,'+
-        'Java, Laravel, Lumen, Symfony, ReactJs, Elastic Search, Metodologías: Scrum..',
+        'Con más de 9 años de experiencia en área de desarrollo de software, '+
+        'participando en todas sus fases del desarrollo de aplicaciones web y moviles con Angular, Ionic, Vue, NodeJs,'+
+        'Java, Laravel, Lumen, Symfony, ReactJs, Elastic Search, Metodologías: Scrum.',
     email:'lopezajoseg@gmail.com',
     address: 'Miranda, Venezuela.',
     social: [
@@ -23,8 +23,12 @@ function App() {
       {name: 'linkedin', url: 'https://www.linkedin.com/in/joselopezarias/'},
     ],
     experience: [
-      {jobTitle: 'FrontEnd', company: 'CityDrive', startDate: 'Jan 2016', endDate: 'Present', jobDescription: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.'},
-      {jobTitle: 'Backend', company: 'DragonsDev', startDate: 'September 2014', endDate: 'Jan 2016', jobDescription: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.'},
+      {jobTitle: 'Desarrollador Full Stack', company: 'ePayco', startDate: 'Agosto 2020', endDate: 'Present', jobDescription: 'Desarrollar nuevos modulos y darle mantenimiento a lo existentes usando tecnologias de alto nivel ElasticSearch, Symfony, Vuejs.'},
+      {jobTitle: 'Desarrollador Full-Stack', company: 'Strapp Internacional', startDate: 'Julio 2019', endDate: 'Julio 2020', jobDescription: 'Desarrollar apliaciones moviles y web usando las siguientes tecnologias: Ionic, Angular, Symfony, Firebase, Mysql, NodeJs'},
+      {jobTitle: 'Senior Developer', company: 'Banco de Venezuela', startDate: 'Agosto 2015', endDate: 'Julio 2019', jobDescription: 'Desarrollar soluciones empresariales de alta rentabilidad usando tecnologias: Java, Oracle, MysqlServer, Pentaho, Angular'},
+      {jobTitle: 'Tesoria de Seguridad Social', company: 'Analista de Sistemas', startDate: 'Septiembre 2014', endDate: 'Julio 2015', jobDescription: 'Desarrollar aplicaiones web usando el framework Yii y base datos Mysql, creación y implementación del intranet institucional y sistemas internos'},
+      {jobTitle: 'INPSASEL', company: 'Analista de Sistemas', startDate: 'Octubre 2013', endDate: 'Julio 2014', jobDescription: 'Desarrollar aplicaiones web usando el framework KumbiaPhp y base datos Mysql, creación y implementación de sistemas internos'},
+
     ],
     education: [
       {degree: 'Maestria Atomica', institution: 'MIT', startDate: 'Jan 2016', endDate: 'Jan 2017', description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.'},

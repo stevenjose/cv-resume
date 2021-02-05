@@ -14,7 +14,7 @@ const Social = ({social, email}) => {
 
   );
   return (
-    <div>
+    <div className = "mb-4">
       <div className="social">
         {socialNetworks}
       </div>
