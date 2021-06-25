@@ -1,11 +1,58 @@
+import React, { useEffect, useState } from "react";
 import { About } from './components/About';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Certificate from './components/Certificate';
 import { Skills } from './components/Skills';
+import {CargarData} from './components/CargarData';
 import img1 from './assets/img/jgla.jpeg';
+import { db } from './firebase';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+const  App = () => {
+  const [estudios, setEstudios] = useState([]);
+  const [experience, setExperience] = useState([]);
+  const [certificate, setCertificate] = useState([]);
+
+  const getLinks = async () => {
+
+    db.collection("education").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setEstudios(docs);
+    });
+
+    db.collection("experience").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setExperience(docs);
+    });
+
+    db.collection("certificate").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      console.log(docs);
+      setCertificate(docs);
+    });
+
+  };
+
+  useEffect(() => {
+    getLinks();
+
+  }, []);
 
   const person = {
     avatar: img1,
@@ -22,22 +69,9 @@ function App() {
       {name: 'github', url: 'https://github.com/stevenjose/'},
       {name: 'linkedin', url: 'https://www.linkedin.com/in/joselopezarias/'},
     ],
-    experience: [
-      {jobTitle: 'Desarrollador Full Stack', company: 'ePayco', startDate: 'Agosto 2020', endDate: 'Present', jobDescription: 'Desarrollar nuevos modulos y darle mantenimiento a lo existentes usando tecnologias de alto nivel ElasticSearch, Symfony, Vuejs.'},
-      {jobTitle: 'Desarrollador Full-Stack', company: 'Strapp Internacional', startDate: 'Julio 2019', endDate: 'Julio 2020', jobDescription: 'Desarrollar apliaciones moviles y web usando las siguientes tecnologias: Ionic, Angular, Symfony, Firebase, Mysql, NodeJs'},
-      {jobTitle: 'Senior Developer', company: 'Banco de Venezuela', startDate: 'Agosto 2015', endDate: 'Julio 2019', jobDescription: 'Desarrollar soluciones empresariales de alta rentabilidad usando tecnologias: Java, Oracle, MysqlServer, Pentaho, Angular'},
-      {jobTitle: 'Tesoria de Seguridad Social', company: 'Analista de Sistemas', startDate: 'Septiembre 2014', endDate: 'Julio 2015', jobDescription: 'Desarrollar aplicaiones web usando el framework Yii y base datos Mysql, creación y implementación del intranet institucional y sistemas internos'},
-      {jobTitle: 'INPSASEL', company: 'Analista de Sistemas', startDate: 'Octubre 2013', endDate: 'Julio 2014', jobDescription: 'Desarrollar aplicaiones web usando el framework KumbiaPhp y base datos Mysql, creación y implementación de sistemas internos'},
-
-    ],
-    education: [
-      {degree: 'Maestria Atomica', institution: 'MIT', startDate: 'Jan 2016', endDate: 'Jan 2017', description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.'},
-      {degree: 'Ingenieria Atomica', institution: 'Harvard', startDate: 'Jan 2014', endDate: 'Decenber 2015', description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.'},
-    ],
-    certificate: [
-      {name: 'FrontEnd Developer', institution: 'Platzi', date: 'Jan 2015', description: 'Aenean commodo ligula eget dolor. Aenean massa.' },
-      {name: 'Backend Developer', institution: 'Platzi', date: 'Jan 2016', description: 'Aenean commodo ligula eget dolor. Aenean massa.' }
-    ],
+    experience,
+    education: estudios,
+    certificate: certificate,
     skills: [
       {name: 'HTML5', percentage: '95%'},
       {name: 'CSS', percentage: '90%'},
@@ -50,16 +84,34 @@ function App() {
       {name: 'PHP', percentage: '85%'},
       {name: 'Symfony', percentage: '85%'},
       {name: 'Laravel', percentage: '85%'},
-      {name: 'ElasticSearch', percentage: '65%'},
-      {name: 'Mysql', percentage: '65%'},
-      {name: 'Postgresql', percentage: '65%'},
-      {name: 'Oracle', percentage: '65%'},
+      {name: 'Java', percentage: '65%'},
+      {name: 'Spring', percentage: '60%'},
+      {name: 'ElasticSearch', percentage: '75%'},
+      {name: 'Mysql', percentage: '75%'},
+      {name: 'Postgresql', percentage: '75%'},
+      {name: 'Oracle', percentage: '75%'},
       {name: 'Mongo', percentage: '55%'},
-      {name: 'Firebase', percentage: '55%'},
+      {name: 'Firebase', percentage: '60%'},
 
     ]
   };
 
+  return (
+    <Router>
+       <Switch>
+          <Route exact path="/cv">
+            <Home person={person}/>
+          </Route>
+          <Route path="/load">
+            <CargarData />
+          </Route>
+        </Switch>
+    </Router>
+
+  );
+}
+
+function Home({ person }) {
   return (
     <header className="App">
       <div className='wrapper'>
@@ -75,6 +127,7 @@ function App() {
         </div>
         <div className='content-wrapper'>
             <div className='content'>
+              <hr/>
               <Experience experience={person.experience} />
               <hr/>
               <Education education={person.education} />
@@ -89,4 +142,7 @@ function App() {
   );
 }
 
+const Load = ()=>{
+  return <h1> Hola </h1>
+}
 export default App;

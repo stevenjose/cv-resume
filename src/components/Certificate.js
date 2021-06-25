@@ -8,9 +8,9 @@ const Certificate = ({certificate}) => {
   const verMas = () =>{
     if(myCertificatesVer){
       setMyCertificatesVer(0);
-      setEtiquetaMas('ver-mas fa fa-arrow-down');
-    }else{
       setEtiquetaMas('ver-mas fa fa-arrow-up');
+    }else{
+      setEtiquetaMas('ver-mas fa fa-arrow-down');
       setMyCertificatesVer(1);
     }
   }
@@ -34,10 +34,11 @@ const Certificate = ({certificate}) => {
   return (
     <div className='title mt-4'>
       <i className='fa fa-trophy'></i>
-      <h2 className="mt-4">
-        CERTIFICADOS
+      <h3 className="mt-4">
+        Certificados
         <i className={ etiquetaMas } onClick={ verMas } style={{float: 'right'}}></i>
-      </h2>
+      </h3>
+      <hr/>
         { myCertificates() }
     </div>
   )
