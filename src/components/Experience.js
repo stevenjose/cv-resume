@@ -60,6 +60,7 @@ const Experience = ({experience}) => {
 };
 
 const Carga = (experience, classes)=>{
+      const urlBase = '/cv-resume/img/';
       return (experience.map((exp) => {
           const jobs = exp.jobTitle + '@' + exp.company;
           return <div className={"mt-4 text-center col-md-6"} key={exp.id}>
@@ -68,14 +69,14 @@ const Carga = (experience, classes)=>{
                       <CardTitle>{ jobs }</CardTitle>
                       {exp.jobDescription}
                       <p>
-                        <img className={ classes.image } src={"/cv/img/javascript.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/php.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/angular.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/react.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/java.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/node.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/symfony.png"} alt={'logo'} />
-                        <img className={ classes.image } src={"/cv/img/laravel.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"javascript.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"php.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"angular.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"react.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"java.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"node.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"symfony.png"} alt={'logo'} />
+                        <img className={ classes.image } src={urlBase+"laravel.png"} alt={'logo'} />
                       </p>
 
                     </CardBody>
