@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-
+import Loading from './Loading';
 const Certificate = ({certificate}) => {
 
   const [myCertificatesVer, setMyCertificatesVer] = useState(1);
@@ -18,12 +18,7 @@ const Certificate = ({certificate}) => {
     if(myCertificatesVer){
       return(
         <div>
-          {certificate.map((cert) =>
-            <div className='item' key={cert.name}>
-              <h3>{cert.name} @ {cert.institution} <span>{cert.date}</span></h3>
-              <p>{cert.description}</p>
-            </div>
-          )}
+          { certificate.length > 0 ? (Carga(certificate)) : <Loading /> }
         </div>
       );
     }
@@ -43,5 +38,17 @@ const Certificate = ({certificate}) => {
     </div>
   )
 };
+
+const Carga = (certificate)=> {
+
+      return (certificate.map((cert) =>{
+             return <div className='item' key={cert.name}>
+                <h3>{cert.name} @ {cert.institution} <span>{cert.date}</span></h3>
+                <p>{cert.description}</p>
+            </div>
+          })
+      )
+}
+
 
 export default Certificate;

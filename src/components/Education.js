@@ -1,14 +1,10 @@
 import React from 'react';
+import Loading from './Loading';
 
-const Education = (props) => {
+const Education = ({education}) => {
   const myEducation = (
     <div>
-      {props.education.map((edu) =>
-        <div className='item' key={edu.degree}>
-          <h3>{edu.degree} @ {edu.institution} <span>{edu.startDate} - {edu.endDate}</span></h3>
-          <p>{edu.description}</p>
-        </div>
-      )}
+      { education.length > 0 ? (Carga(education)) : <Loading />}
     </div>
   );
   return (
@@ -20,5 +16,15 @@ const Education = (props) => {
     </div>
   )
 };
+
+const Carga = (education)=>{
+      return education.map((edu) => {
+           return <div className='item' key={edu.degree}>
+              <h3>{edu.degree} @ {edu.institution} <span>{edu.startDate} - {edu.endDate}</span></h3>
+              <p>{edu.description}</p>
+            </div>
+        })
+}
+
 
 export default Education;

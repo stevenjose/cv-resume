@@ -7,7 +7,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
-import logoEpayco from '../assets/img/logo.png';
+import Loading from './Loading';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -17,11 +17,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 15,
   },
   image: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft:340,
-    textAlign: 'center'
+    background: 'black'
   },
   p: {
     fontSize: '3rem',
@@ -35,34 +31,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const logo = "/cv/img/";
 
-const Experience = (props) => {
+const Experience = ({experience}) => {
 
   const classes = useStyles();
-
-  const avatarEpayco = logoEpayco;
 
   const myExperience = (
     <div>
       {
-        props.experience.map((exp) => {
-
-          const jobs = exp.jobTitle + '@' + exp.company;
-
-          return <div key={exp.id}>
-            <div className="row" key={exp.id}>
-              <div className="col-md-6 col-lg-4 col-sm-12">
-                <img className="img-thumbnail" src={exp.logo} alt={exp.company} />
-              </div>
-              <div className="col-sm-12 col-md-8">
-                  <h3>{ jobs }</h3>
-                  <p>{exp.jobDescription}</p>
-              </div>
-            </div>
-          </div>
-        }
-
-        )}
+        experience.length > 1 ? (Carga(experience, classes)) : <Loading />
+      }
     </div>
   );
   return (
@@ -73,6 +52,26 @@ const Experience = (props) => {
       {myExperience}
     </div>
   )
+
 };
+
+const Carga = (experience, classes)=>{
+      return (experience.map((exp) => {
+          const jobs = exp.jobTitle + '@' + exp.company;
+          return <div key={exp.id}>
+            <div className="row mt-4" key={exp.id}>
+              <div className="col-md-6 col-lg-4 col-sm-12">
+                <img className={classes.image + ' '+ "img-thumbnail"}  src={logo+exp.logo} alt={exp.company} />
+              </div>
+              <div className="col-sm-12 col-md-8">
+                  <h3>{ jobs }</h3>
+                  <p>{exp.jobDescription}</p>
+              </div>
+            </div>
+          </div>
+        })
+      )
+  }
+
 
 export default Experience;

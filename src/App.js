@@ -19,6 +19,7 @@ const  App = () => {
   const [estudios, setEstudios] = useState([]);
   const [experience, setExperience] = useState([]);
   const [certificate, setCertificate] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   const getLinks = async () => {
 
@@ -47,6 +48,15 @@ const  App = () => {
       setCertificate(docs);
     });
 
+    db.collection("skills").onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      console.log(docs);
+      setSkills(docs);
+    });
+
   };
 
   useEffect(() => {
@@ -71,29 +81,8 @@ const  App = () => {
     ],
     experience,
     education: estudios,
-    certificate: certificate,
-    skills: [
-      {name: 'HTML5', percentage: '95%'},
-      {name: 'CSS', percentage: '90%'},
-      {name: 'JavaScript', percentage: '95%'},
-      {name: 'Angular', percentage: '95%'},
-      {name: 'VueJS', percentage: '78%'},
-      {name: 'Ionic', percentage: '85%'},
-      {name: 'ReactJS', percentage: '68%'},
-      {name: 'NodeJs', percentage: '75%'},
-      {name: 'PHP', percentage: '85%'},
-      {name: 'Symfony', percentage: '85%'},
-      {name: 'Laravel', percentage: '85%'},
-      {name: 'Java', percentage: '65%'},
-      {name: 'Spring', percentage: '60%'},
-      {name: 'ElasticSearch', percentage: '75%'},
-      {name: 'Mysql', percentage: '75%'},
-      {name: 'Postgresql', percentage: '75%'},
-      {name: 'Oracle', percentage: '75%'},
-      {name: 'Mongo', percentage: '55%'},
-      {name: 'Firebase', percentage: '60%'},
-
-    ]
+    certificate,
+    skills
   };
 
   return (
