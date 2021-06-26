@@ -86,7 +86,7 @@ const  App = () => {
   return (
     <Router>
        <Switch>
-          <Route exact path="/cv">
+          <Route exact path="/cv-resume">
             <Home person={person}/>
           </Route>
           <Route path="/load">

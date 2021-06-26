@@ -44,7 +44,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cv"
+    "url": "git+https://github.com/cv-resume"
   },
   "keywords": [
     "Gresume",
@@ -54,7 +54,7 @@
   "author": "Jose Lopez lopezajoseg@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cv"
+    "url": "https://github.com/cv-resume"
   },
-  "homepage": "https://github.com/cv"
+  "homepage": "https://github.com/cv-resume"
 }
