@@ -1,13 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
 import Loading from './Loading';
+import { Card, CardBody, CardTitle,CardFooter,Button } from "shards-react";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -17,7 +11,10 @@ const useStyles = makeStyles((theme) => ({
     margin: 15,
   },
   image: {
-    background: 'black'
+    width: 30,
+    height: 30,
+    margin: 5,
+    background: 'white'
   },
   p: {
     fontSize: '3rem',
@@ -28,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     fontSize: '3rem'
   },
+  link: {
+    textDecoration: 'none',
+    color: 'white'
+  },
+  sombra:{
+    boxShadow: "-1px 3px 23px -6px rgba(102,33,102,1)"
+  }
 }));
 
 
@@ -40,7 +44,7 @@ const Experience = ({experience}) => {
   const myExperience = (
     <div>
       {
-        experience.length > 1 ? (Carga(experience, classes)) : <Loading />
+        experience.length > 1 ? <div className="row mt-4 p-4">{(Carga(experience, classes))}</div>: <Loading />
       }
     </div>
   );
@@ -58,20 +62,69 @@ const Experience = ({experience}) => {
 const Carga = (experience, classes)=>{
       return (experience.map((exp) => {
           const jobs = exp.jobTitle + '@' + exp.company;
-          return <div key={exp.id}>
-            <div className="row mt-4" key={exp.id}>
-              <div className="col-md-6 col-lg-4 col-sm-12">
-                <img className={classes.image + ' '+ "img-thumbnail"}  src={logo+exp.logo} alt={exp.company} />
-              </div>
-              <div className="col-sm-12 col-md-8">
-                  <h3>{ jobs }</h3>
-                  <p>{exp.jobDescription}</p>
-              </div>
-            </div>
-          </div>
+          return <div className={"mt-4 text-center col-md-6"} key={exp.id}>
+                    <Card className={"shadow p-3 bg-gradient-primary mt-4 rounded"}>
+                    <CardBody>
+                      <CardTitle>{ jobs }</CardTitle>
+                      {exp.jobDescription}
+                      <p>
+                        <img className={ classes.image } src={"/cv/img/javascript.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/php.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/angular.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/react.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/java.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/node.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/symfony.png"} alt={'logo'} />
+                        <img className={ classes.image } src={"/cv/img/laravel.png"} alt={'logo'} />
+                      </p>
+
+                    </CardBody>
+                    <CardFooter className="text-center">
+                      <Button squared theme={ ramdow('button') }>
+                        <a className={classes.link} href={exp.web} target="_blank">{ exp.company }</a>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+
         })
       )
   }
 
+const ramdow = (val) => {
+    let valor = [];
+    if(val == 'button')
+    {
+      valor =
+      [
+        "info",
+        "success",
+        "secondary",
+        "danger"
+      ]
+    }
+    if(val=='sombra'){
+      valor =
+      [
+        "bg-light",
+        "bg-white",
+        "bg-dark"
+      ]
+    }
+    if(val=='col'){
+      valor =
+      [
+        "col-md-10",
+        "col-md-8",
+        "col-md-6",
+        "col-md-5",
+        "col-md-4",
+      ]
+    }
+
+    var result = valor[Math.floor(Math.random() * 3)];
+    console.log(result);
+    return result;
+  };
 
 export default Experience;

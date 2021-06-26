@@ -44,7 +44,6 @@ const  App = () => {
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
-      console.log(docs);
       setCertificate(docs);
     });
 
@@ -53,7 +52,6 @@ const  App = () => {
       querySnapshot.forEach((doc) => {
         docs.push({ ...doc.data(), id: doc.id });
       });
-      console.log(docs);
       setSkills(docs);
     });
 
