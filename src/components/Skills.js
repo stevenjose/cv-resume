@@ -30,11 +30,14 @@ export const  Skills = ({ skills }) => {
   return(
     <div className='title'>
       <i className='fa fa-code'></i>
-
+      <hr/>
       <h3>Habilidades
         <i className={ etiquetaMas } onClick={ verMas } style={{float: 'right'}}></i>
       </h3>
+      <hr/>
       { mySkillsVer() }
+     
+     
     </div>
   );
 }

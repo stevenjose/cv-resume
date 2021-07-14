@@ -45,6 +45,7 @@ const Carga = (certificate)=> {
              return <div className='item' key={cert.name}>
                 <h3>{cert.name} @ {cert.institution} <span>{cert.date}</span></h3>
                 <p>{cert.description}</p>
+                <a href={ cert.url } className="btn btn-outline-dark" target="_blank"> Ver certificado </a>
             </div>
           })
       )

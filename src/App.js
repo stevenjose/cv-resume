@@ -3,6 +3,7 @@ import { About } from './components/About';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Certificate from './components/Certificate';
+import {Portafolio} from './components/Portafolio';
 import { Skills } from './components/Skills';
 import {CargarData} from './components/CargarData';
 import img1 from './assets/img/jgla.jpeg';
@@ -20,42 +21,25 @@ const  App = () => {
   const [experience, setExperience] = useState([]);
   const [certificate, setCertificate] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [portafolio, setPortafolio] = useState([]);
 
   const getLinks = async () => {
-
-    db.collection("education").onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setEstudios(docs);
-    });
-
-    db.collection("experience").onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setExperience(docs);
-    });
-
-    db.collection("certificate").onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setCertificate(docs);
-    });
-
-    db.collection("skills").onSnapshot((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-      setSkills(docs);
-    });
-
+    consultApi("education", setEstudios);
+    consultApi("experience",setExperience);
+    consultApi("certificate",setCertificate);
+    consultApi("skills",setSkills);
+    consultApi("portafolio",setPortafolio);
   };
+
+  const consultApi = (indice, setState) => {
+    db.collection(indice).onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setState(docs);
+    });
+  }
 
   useEffect(() => {
     getLinks();
@@ -78,6 +62,7 @@ const  App = () => {
       {name: 'linkedin', url: 'https://www.linkedin.com/in/joselopezarias/'},
     ],
     experience,
+    portafolio,
     education: estudios,
     certificate,
     skills
@@ -121,6 +106,7 @@ function Home({ person }) {
               <hr/>
               <Certificate certificate={person.certificate} />
               <hr/>
+              <Portafolio portafolio={person.portafolio}/>
               <Skills skills={person.skills} />
             </div>
         </div>
