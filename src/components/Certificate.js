@@ -42,7 +42,7 @@ const Certificate = ({certificate}) => {
 const Carga = (certificate)=> {
 
       return (certificate.map((cert) =>{
-             return <div className='item' key={cert.name}>
+             return <div className='item' key={cert.id}>
                 <h3>{cert.name} @ {cert.institution} <span>{cert.date}</span></h3>
                 <p>{cert.description}</p>
                 <a href={ cert.url } className="btn btn-outline-dark" target="_blank"> Ver certificado </a>

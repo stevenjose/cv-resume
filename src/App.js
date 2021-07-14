@@ -22,6 +22,7 @@ const  App = () => {
   const [certificate, setCertificate] = useState([]);
   const [skills, setSkills] = useState([]);
   const [portafolio, setPortafolio] = useState([]);
+  const [perfil, setPerfil] = useState([]);
 
   const getLinks = async () => {
     consultApi("education", setEstudios);
@@ -29,6 +30,7 @@ const  App = () => {
     consultApi("certificate",setCertificate);
     consultApi("skills",setSkills);
     consultApi("portafolio",setPortafolio);
+    consultApi("perfil",setPerfil);
   };
 
   const consultApi = (indice, setState) => {
@@ -48,15 +50,11 @@ const  App = () => {
 
   const person = {
     avatar: img1,
-    name: 'José Gregorio López Arias',
-    profession: 'Full Stack Developer',
-    bio: 'Desarrollador de Aplicaciones móviles y web Mi experiencia: '+
-        'He participado en proyectos pequeños, medianos y grandes, bajo estándares de calidad.' +
-        'Con más de 9 años de experiencia en área de desarrollo de software, '+
-        'participando en todas sus fases del desarrollo de aplicaciones web y moviles con Angular, Ionic, Vue, NodeJs,'+
-        'Java, Laravel, Lumen, Symfony, ReactJs, Elastic Search, Metodologías: Scrum.',
-    email:'lopezajoseg@gmail.com',
-    address: 'Miranda, Venezuela.',
+    name: (perfil && perfil[0]) ? perfil[0].name : '',
+    profession: (perfil && perfil[0]) ? perfil[0].profession : '',
+    bio: (perfil && perfil[0] ) ? perfil[0].bio : '',
+    email: (perfil && perfil[0]) ? perfil[0].email: '',
+    address: (perfil && perfil[0]) ? perfil[0].address : '',
     social: [
       {name: 'github', url: 'https://github.com/stevenjose/'},
       {name: 'linkedin', url: 'https://www.linkedin.com/in/joselopezarias/'},

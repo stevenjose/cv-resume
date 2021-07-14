@@ -124,7 +124,6 @@ const ramdow = (val) => {
     }
 
     var result = valor[Math.floor(Math.random() * 3)];
-    console.log(result);
     return result;
   };
 
