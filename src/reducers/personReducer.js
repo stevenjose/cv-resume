@@ -15,7 +15,6 @@ const initState = {
 export const personReducer = (state = initState, action) => {
 	switch (action.type) {
 		case types.userBio:
-			console.log(action.payload);
 			return {
 				avatar: action.payload.avatar,
 				perfil: action.payload.perfil,

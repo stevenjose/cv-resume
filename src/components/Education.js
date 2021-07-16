@@ -1,10 +1,12 @@
 import React from 'react';
 import Loading from './Loading';
+import { useSelector } from 'react-redux';
 
-const Education = ({education}) => {
+const Education = () => {
+  const useState = useSelector((state) => state.user);
   const myEducation = (
     <div>
-      { education.length > 0 ? (Carga(education)) : <Loading />}
+      { useState.education && useState.education.length > 0 ? (Carga(useState.education)) : <Loading />}
     </div>
   );
   return (

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Loading from "./Loading";
+import { useSelector } from 'react-redux';
 
-export const Portafolio = ({ portafolio }) => {
+export const Portafolio = () => {
   const [myPortafolioVer, setPortafolioVer] = useState(1);
   const [etiquetaMas, setEtiquetaMas] = useState("ver-mas fa fa-arrow-up");
+  const userState = useSelector((state) => state.user);
 
   const verMas = () => {
     if (myPortafolioVer) {
@@ -17,7 +19,7 @@ export const Portafolio = ({ portafolio }) => {
   const myProtafolio = () => {
     if (myPortafolioVer) {
       return (
-        <div>{portafolio.length > 0 ? Carga(portafolio) : <Loading />}</div>
+        <div>{userState.portafolio && userState.portafolio.length > 0 ? Carga(userState.portafolio) : <Loading />}</div>
       );
     }
   };

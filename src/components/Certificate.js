@@ -1,9 +1,12 @@
 import React, { useState }  from 'react';
 import Loading from './Loading';
-const Certificate = ({certificate}) => {
+import { useSelector } from 'react-redux';
+
+const Certificate = () => {
 
   const [myCertificatesVer, setMyCertificatesVer] = useState(1);
   const [etiquetaMas, setEtiquetaMas] = useState('ver-mas fa fa-arrow-up');
+  const userState = useSelector((state) => state.user);
 
   const verMas = () =>{
     if(myCertificatesVer){
@@ -18,7 +21,7 @@ const Certificate = ({certificate}) => {
     if(myCertificatesVer){
       return(
         <div>
-          { certificate.length > 0 ? (Carga(certificate)) : <Loading /> }
+          { userState.certificate && userState.certificate.length > 0 ? (Carga(userState.certificate)) : <Loading /> }
         </div>
       );
     }

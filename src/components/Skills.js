@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Loading from './Loading';
+import { useSelector } from 'react-redux';
 
-export const  Skills = ({ skills }) => {
-
+export const  Skills = () => {
+  const userState = useSelector((state) => state.user);
   const [skillVer, setSkillVer] = useState(1);
   const [etiquetaMas, setEtiquetaMas] = useState('ver-mas fa fa-arrow-down');
   const verMas = () =>{
@@ -20,7 +21,7 @@ export const  Skills = ({ skills }) => {
     if(skillVer){
       return(
         <div className="mt-4">
-          { skills.length > 0 ? (Carga(skills)) : <Loading />}
+          {userState.skills && userState.skills.length > 0 ? (Carga(userState.skills)) : <Loading />}
         </div>
       )
     }

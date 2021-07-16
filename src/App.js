@@ -8,7 +8,7 @@ import { Skills } from './components/Skills';
 import {CargarData} from './components/CargarData';
 import img1 from './assets/img/jgla.jpeg';
 import { db } from './firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { user } from './actions/user';
 import { userExperience } from './actions/userExperience';
 import { userPortafolio } from './actions/userPortafolio';
@@ -26,6 +26,7 @@ import {
 
 const  App = () => {
   const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
   const [estudios, setEstudios] = useState([]);
   const [experience, setExperience] = useState([]);
   const [certificate, setCertificate] = useState([]);
@@ -97,7 +98,9 @@ const  App = () => {
     <Router>
        <Switch>
           <Route exact path="/cv-resume">
+
             <Home person={person}/>
+          }
           </Route>
           <Route path="/load">
             <CargarData />
@@ -109,29 +112,31 @@ const  App = () => {
 }
 
 function Home({ person }) {
+  const userState = useSelector((state) => state.user);
+  const { perfil } = useSelector((state) => state.user);
   return (
     <header className="App">
       <div className='wrapper'>
         <div className='sidebar'>
           <About
-            avatar={person.avatar}
-            name={person.name}
-            profession={person.profession}
-            bio={person.bio}
-            address={person.address}
-            social={person.social}
-            email ={person.email}/>
+            avatar={userState.avatar}
+            name={perfil.name}
+            profession={userState.perfil.profession}
+            bio={userState.perfil.bio}
+            address={userState.perfil.address}
+            social={userState.social}
+            email ={userState.perfil.email}/>
         </div>
         <div className='content-wrapper'>
             <div className='content'>
               <hr/>
-              <Experience experience={person.experience} />
+              <Experience />
               <hr/>
-              <Education education={person.education} />
+              <Education />
               <hr/>
-              <Certificate certificate={person.certificate} />
+              <Certificate />
               <hr/>
-              <Portafolio portafolio={person.portafolio}/>
+              <Portafolio />
               <Skills skills={person.skills} />
             </div>
         </div>

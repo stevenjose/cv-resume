@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Loading from './Loading';
 import { Card, CardBody, CardTitle,CardFooter,Button } from "shards-react";
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -37,14 +38,14 @@ const useStyles = makeStyles((theme) => ({
 
 const logo = "/cv/img/";
 
-const Experience = ({experience}) => {
+const Experience = () => {
 
-  const classes = useStyles();
-
+  const classes =    useStyles();
+  const useState = useSelector((state) => state.user);
   const myExperience = (
     <div>
       {
-        experience.length > 1 ? <div className="row mt-4 p-4">{(Carga(experience, classes))}</div>: <Loading />
+        (useState.experience && useState.experience.length > 1) ? <div className="row mt-4 p-4">{(Carga(useState.experience, classes))}</div>: <Loading />
       }
     </div>
   );
@@ -62,6 +63,7 @@ const Experience = ({experience}) => {
 const Carga = (experience, classes)=>{
       const urlBase = '/cv-resume/img/';
       return (experience.map((exp) => {
+
           const jobs = exp.jobTitle + '@' + exp.company;
           return <div className={"mt-4 text-center col-md-6"} key={exp.id}>
                     <Card className={"shadow p-3 bg-gradient-primary mt-4 rounded"}>
