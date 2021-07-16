@@ -8,6 +8,12 @@ import { Skills } from './components/Skills';
 import {CargarData} from './components/CargarData';
 import img1 from './assets/img/jgla.jpeg';
 import { db } from './firebase';
+import { useDispatch } from 'react-redux';
+import { user } from './actions/user';
+import { userExperience } from './actions/userExperience';
+import { userPortafolio } from './actions/userPortafolio';
+import { userEducation } from './actions/userEducation';
+import { auth } from './actions/auth';
 
 import {
   BrowserRouter as Router,
@@ -17,6 +23,7 @@ import {
 } from "react-router-dom";
 
 const  App = () => {
+  const dispatch = useDispatch();
   const [estudios, setEstudios] = useState([]);
   const [experience, setExperience] = useState([]);
   const [certificate, setCertificate] = useState([]);
@@ -25,12 +32,12 @@ const  App = () => {
   const [perfil, setPerfil] = useState([]);
 
   const getLinks = async () => {
+    consultApi("perfil",setPerfil);
     consultApi("education", setEstudios);
     consultApi("experience",setExperience);
     consultApi("certificate",setCertificate);
     consultApi("skills",setSkills);
     consultApi("portafolio",setPortafolio);
-    consultApi("perfil",setPerfil);
   };
 
   const consultApi = (indice, setState) => {
@@ -40,12 +47,25 @@ const  App = () => {
         docs.push({ ...doc.data(), id: doc.id });
       });
       setState(docs);
+      if(indice === 'perfil'){
+         dispatch(user(img1,docs[0]));
+      }
+      if (indice === 'experience') {
+        dispatch(userExperience(docs));
+      }
+      if (indice === 'portafolio') {
+        dispatch(userPortafolio(docs));
+      }
+      if (indice === 'education') {
+        dispatch(userEducation(docs));
+      }
+
     });
   }
 
   useEffect(() => {
     getLinks();
-
+    dispatch(auth(12345,'Jose G'));
   }, []);
 
   const person = {
