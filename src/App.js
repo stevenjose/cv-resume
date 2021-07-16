@@ -13,6 +13,8 @@ import { user } from './actions/user';
 import { userExperience } from './actions/userExperience';
 import { userPortafolio } from './actions/userPortafolio';
 import { userEducation } from './actions/userEducation';
+import { userCertificate } from './actions/userCertificate';
+import { userSkills } from './actions/userSkills';
 import { auth } from './actions/auth';
 
 import {
@@ -59,13 +61,18 @@ const  App = () => {
       if (indice === 'education') {
         dispatch(userEducation(docs));
       }
+      if (indice === 'certificate') {
+        dispatch(userCertificate(docs));
+      }
+      if (indice === 'skills') {
+        dispatch(userSkills(docs));
+      }
 
     });
   }
 
   useEffect(() => {
     getLinks();
-    dispatch(auth(12345,'Jose G'));
   }, []);
 
   const person = {

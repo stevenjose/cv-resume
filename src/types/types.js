@@ -3,5 +3,7 @@ export const types = {
 	userExperience: '[User] exp',
 	userPortafolio: '[User] portafolio',
 	userEducation: '[User] education',
+	userCertificate: '[User] certificate',
+	userSkills: '[User] skill',
 	login: '[Login] auth'
 }

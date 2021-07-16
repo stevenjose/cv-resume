@@ -46,6 +46,18 @@ export const personReducer = (state = initState, action) => {
 					   education: action.payload.education
 					}
 
+		case types.userCertificate:
+
+			return 	{
+					   ...state,
+					   certificate: action.payload.certificate
+					}
+		case types.userSkills:
+
+			return 	{
+					   ...state,
+					   skills: action.payload.skills
+					}
 		default:
 			return state;
 			break;
