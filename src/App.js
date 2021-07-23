@@ -7,9 +7,7 @@ import {Portafolio} from './components/Portafolio';
 import { Skills } from './components/Skills';
 import {CargarData} from './components/CargarData';
 import { useSelector } from 'react-redux';
-import  UserHook   from './hooks/UserHook';
-
-
+import { UserHook }   from './hooks/UserHook';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,21 +17,15 @@ import {
 const  App = () => {
 
   const userState = useSelector((state) => state.user);
-  const { buscarUser, dataFetch } = UserHook("");
+  const { buscarUser } = UserHook("");
   const getLinks = async () => {
-    consultApi("perfil");
-    consultApi("education");
-    consultApi("experience");
-    consultApi("certificate");
-    consultApi("skills");
-    consultApi("portafolio");
-    console.log(dataFetch);
+    await buscarUser("perfil");
+    await buscarUser("education");
+    await buscarUser("experience");
+    await buscarUser("certificate");
+    await buscarUser("skills");
+    await buscarUser("portafolio");
   };
-
-  const consultApi = (indice) => {
-    buscarUser(indice);
-    //console.log(dataFetch);
-  }
 
   useEffect(() => {
     getLinks();

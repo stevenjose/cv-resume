@@ -1,22 +1,31 @@
-import {renderHook, act} from "@testing-library/react-hooks";
-import  UserHook   from '../../hooks/UserHook';
-import React from 'react'
-import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
-describe('Prueba para hook', (() => {
-  const initialState = {};
-  const mockStore = configureStore();
-  let store,wrapper
-  test('prueba hook userBio',()=>{
-    console.log('Test');
-    store = mockStore(initialState)
-    const { result } = <Provider store={store}> renderHook(() => UserHook(""))</Provider>
-    act(() => {
-      console.log('Act');
-        //result.current.buscarUser('perfil');
-        console.log(result.error)
-    })
+import { userFetch } from '../../actions/user';
+import { types } from '../../types/types';
+
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares)
+
+const initState = {
+    user: {
+      avatar: '',
+      perfil: '',
+      social: []
+    }
+};
+
+
+
+let store = mockStore(initState);
+
+describe('prueba en la action user', (() => {
+
+  beforeEach( () => {
+    store = mockStore(initState);
+  });
+
+  test('prueba action type userBio', () => {
 
   });
 
