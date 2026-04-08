@@ -1,0 +1,229 @@
+{
+  "personal": {
+    "name": "Steven Jose",
+    "title": "Desarrollador de Software Senior",
+    "location": "Barcelona, España",
+    "email": "lopezajoseg@gmail.com",
+    "phone": "+34 XXXXXXXXX",
+    "summary": "Desarrollador de Software Senior con +3 años de experiencia especializado en arquitectura backend, integración de sistemas y clean code. Experto en Java, Spring Boot, Angular y herramientas DevOps.",
+    "social": {
+      "github": "https://github.com/stevenjose/",
+      "linkedin": "https://www.linkedin.com/in/joselopezarias/",
+      "portfolio": "https://stevenjose.github.io/cv-resume"
+    }
+  },
+
+  "experience": [
+    {
+      "id": 1,
+      "company": "Mecalux",
+      "position": "Desarrollador de Software Senior",
+      "location": "Barcelona, España",
+      "startDate": "2022-06-01",
+      "endDate": null,
+      "current": true,
+      "duration": "3 años +",
+      "description": "Desarrollo de soluciones empresariales backend y frontend para sistema de gestión de almacenes. Especializado en integración de sistemas, arquitectura limpia y testing de mutación.",
+      "responsibilities": [
+        "Desarrollo backend con Java y Spring Boot siguiendo principios de Clean Code",
+        "Integración con Alfresco ECM para gestión de documentos empresariales",
+        "Implementación de microservicios con comunicación asíncrona mediante RabbitMQ",
+        "Implementación de Mutation Testing (PIT) para asegurar calidad de testing",
+        "Containerización de aplicaciones con Docker",
+        "Monitoreo y logging centralizado con Kibana y ELK Stack",
+        "Desarrollo frontend con Angular y TypeScript",
+        "Aplicación de SOLID principles y arquitectura limpia",
+        "Code reviews y mentoring a otros desarrolladores"
+      ],
+      "technologies": [
+        "Java", "Spring Boot", "Spring Data", "Spring Security",
+        "Angular", "TypeScript", "RxJS",
+        "Docker", "RabbitMQ", "Kibana", "ELK Stack",
+        "Alfresco ECM", "Mutation Testing (PIT)",
+        "Git", "Maven", "REST API"
+      ],
+      "achievements": [
+        "Implementación exitosa de sistema de integración con Alfresco",
+        "Mejora de calidad de testing mediante Mutation Testing",
+        "Optimización de performance en microservicios",
+        "Reducción de tiempo de deployment mediante Docker"
+      ],
+      "web": "https://www.mecalux.es"
+    }
+  ],
+
+  "skills": [
+    {
+      "category": "Backend",
+      "level": "expert",
+      "items": [
+        { "name": "Java", "level": 95, "years": 3 },
+        { "name": "Spring Boot", "level": 95, "years": 3 },
+        { "name": "Spring Framework", "level": 90, "years": 3 },
+        { "name": "Spring Data JPA", "level": 90, "years": 3 },
+        { "name": "Spring Security", "level": 85, "years": 2 },
+        { "name": "REST API", "level": 95, "years": 3 },
+        { "name": "Mutation Testing (PIT)", "level": 75, "years": 2 }
+      ]
+    },
+    {
+      "category": "Frontend",
+      "level": "advanced",
+      "items": [
+        { "name": "Angular", "level": 85, "years": 3 },
+        { "name": "TypeScript", "level": 85, "years": 3 },
+        { "name": "RxJS", "level": 80, "years": 2 },
+        { "name": "React", "level": 70, "years": 1 }
+      ]
+    },
+    {
+      "category": "DevOps & Infrastructure",
+      "level": "intermediate",
+      "items": [
+        { "name": "Docker", "level": 80, "years": 2 },
+        { "name": "RabbitMQ", "level": 75, "years": 2 },
+        { "name": "Kibana", "level": 80, "years": 2 },
+        { "name": "ELK Stack", "level": 75, "years": 2 },
+        { "name": "Git", "level": 95, "years": 3 }
+      ]
+    },
+    {
+      "category": "Document Management",
+      "level": "intermediate",
+      "items": [
+        { "name": "Alfresco ECM", "level": 80, "years": 3 }
+      ]
+    },
+    {
+      "category": "Metodología & Buenas Prácticas",
+      "level": "expert",
+      "items": [
+        { "name": "Clean Code", "level": 95, "years": 3 },
+        { "name": "SOLID Principles", "level": 90, "years": 3 },
+        { "name": "Unit Testing", "level": 90, "years": 3 },
+        { "name": "Integration Testing", "level": 85, "years": 2 },
+        { "name": "Agile/Scrum", "level": 85, "years": 3 },
+        { "name": "Code Reviews", "level": 90, "years": 3 }
+      ]
+    },
+    {
+      "category": "Databases",
+      "level": "intermediate",
+      "items": [
+        { "name": "SQL", "level": 85, "years": 3 },
+        { "name": "PostgreSQL", "level": 80, "years": 2 },
+        { "name": "MySQL", "level": 75, "years": 2 }
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "id": 1,
+      "title": "Integración Alfresco para Gestión de Documentos",
+      "company": "Mecalux",
+      "description": "Implementación de módulo completo de integración con Alfresco ECM para gestión, almacenamiento y recuperación de documentos empresariales en sistemas de gestión de almacenes.",
+      "role": "Desarrollador Principal",
+      "startDate": "2023-01-01",
+      "endDate": "2023-08-31",
+      "technologies": [
+        "Java", "Spring Boot", "Alfresco REST API",
+        "RabbitMQ", "Docker", "PostgreSQL"
+      ],
+      "highlights": [
+        "Arquitectura limpia y SOLID principles",
+        "100% test coverage mediante Unit Tests",
+        "Mutation Testing para validar calidad de tests",
+        "Documentación técnica completa"
+      ],
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Arquitectura de Microservicios con RabbitMQ",
+      "company": "Mecalux",
+      "description": "Diseño e implementación de arquitectura de microservicios escalable con comunicación asíncrona mediante RabbitMQ. Sistema distribuido para procesamiento de órdenes en tiempo real.",
+      "role": "Arquitecto Backend",
+      "startDate": "2023-09-01",
+      "endDate": "2024-06-30",
+      "technologies": [
+        "Java", "Spring Boot", "RabbitMQ", "Docker",
+        "PostgreSQL", "Maven"
+      ],
+      "highlights": [
+        "Alta escalabilidad y disponibilidad",
+        "Comunicación asíncrona robusta",
+        "Integration Testing completo",
+        "Deployment con Docker"
+      ],
+      "link": ""
+    },
+    {
+      "id": 3,
+      "title": "Logging y Monitoreo Centralizado con ELK Stack",
+      "company": "Mecalux",
+      "description": "Implementación de infraestructura completa de logging centralizado y monitoreo en tiempo real usando ELK Stack (Elasticsearch, Logstash, Kibana) para todos los microservicios.",
+      "role": "DevOps Developer",
+      "startDate": "2024-01-01",
+      "endDate": "2024-12-31",
+      "technologies": [
+        "Elasticsearch", "Logstash", "Kibana", "Docker",
+        "Java Logging", "Spring Boot Actuator", "Grafana"
+      ],
+      "highlights": [
+        "Observabilidad en tiempo real",
+        "Dashboards personalizados",
+        "Alertas automáticas",
+        "Análisis de logs centralizado"
+      ],
+      "link": ""
+    }
+  ],
+
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad/Instituto",
+      "degree": "Ingeniería en Computación",
+      "field": "Ingeniería de Software",
+      "startDate": "2014",
+      "endDate": "2019",
+      "description": "Formación en ciencias de la computación, algoritmos y programación"
+    }
+  ],
+
+  "certifications": [
+    {
+      "id": 1,
+      "title": "Spring Professional Developer",
+      "issuer": "VMware/Pivotal",
+      "issueDate": "2023",
+      "expiryDate": null,
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Clean Code Certificate",
+      "issuer": "Robert C. Martin Institute",
+      "issueDate": "2022",
+      "expiryDate": null,
+      "link": ""
+    }
+  ],
+
+  "languages": [
+    {
+      "language": "Español",
+      "level": "Nativo"
+    },
+    {
+      "language": "Inglés",
+      "level": "Fluido (B2)"
+    }
+  ],
+
+  "about": {
+    "title": "Sobre Mí",
+    "content": "Soy un Desarrollador de Software Senior apasionado por la calidad del código y la arquitectura clean. Con más de 3 años en Mecalux, he adquirido experiencia sólida en desarrollo backend con Java y Spring Boot, integración de sistemas complejos, y buenas prácticas de desarrollo. Me destaco por mi compromiso con Clean Code, Testing de Mutación y arquitectura escalable."
+  }
+}

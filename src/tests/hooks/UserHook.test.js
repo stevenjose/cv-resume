@@ -1,28 +1,22 @@
 import { loadUser } from "../../actions/user";
 
 describe("prueba en la helper loadUser", () => {
-  test("debe regresar un array con un objeto", async () => {
-    const perfil = await loadUser("perfil");
+  test("debe regresar un array con datos del perfil en JSON", async () => {
+    const perfil = await loadUser();
     expect(perfil).toEqual([
       {
-        id: "H9TbQpD3BTZD20kMDIFL",
-        tlf: "+584241596631",
-        address: "Miranda, Venezuela.",
-        bio: "Desarrollador de Aplicaciones móviles y web  Mi experiencia: He participado en proyectos de pequeña y gran complejidad, trabajando bajo estándares de calidad. En empresas privada y en la banca. Tengo mas de 10 años de experiencia en área de desarrollo de software, participando en todas sus fases .",
-        name: "José Gregorio López Arias",
+        name: "Steven Jose",
+        profession: "Desarrollador de Software Senior",
+        bio: "Desarrollador de Software Senior con +3 años de experiencia especializado en arquitectura backend, integración de sistemas y clean code. Experto en Java, Spring Boot, Angular y herramientas DevOps.",
+        address: "Barcelona, España",
         email: "lopezajoseg@gmail.com",
-        zip: "1012",
-        profession: "Full Stack Developer",
+        phone: "+34 XXXXXXXXX",
       },
     ]);
   });
 
   test("prueba action type userBio", async () => {
-    /*  const docs = [];
-    const perfil = db.collection("perfil");
-    const snapShop = await perfil.get();
-    snapShop.forEach(doc => {
-      console.log(doc.id, '=>', doc.data());
-    }); */
+    // covered by actions/user.test.js
   });
 }); //Final describe
+

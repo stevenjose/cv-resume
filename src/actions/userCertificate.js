@@ -1,17 +1,10 @@
 import { types } from "../types/types";
-import { db } from '../firebase';
+import cvData from '../data/cv-data.json';
 
-// redux thunk para method async
-export const userCertificateFetch = (indice) =>{
+export const userCertificateFetch = () => {
 	return (dispatch) => {
-		const docs = [];
-		db.collection(indice).onSnapshot((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				docs.push({ ...doc.data(), id: doc.id });
-			});
-				dispatch(userCertificate(docs));
-		})
-	}
+		dispatch(userCertificate(cvData.certifications));
+	};
 }
 
 export const userCertificate = (certificate) => {
@@ -22,3 +15,4 @@ export const userCertificate = (certificate) => {
 		}
 	}
 }
+

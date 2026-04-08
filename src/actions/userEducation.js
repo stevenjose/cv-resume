@@ -1,17 +1,10 @@
 import { types } from '../types/types';
-import { db } from '../firebase';
+import cvData from '../data/cv-data.json';
 
-// redux thunk para method async
-export const userEducationFetch = (indice) =>{
+export const userEducationFetch = () => {
 	return (dispatch) => {
-		const docs = [];
-		db.collection(indice).onSnapshot((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				docs.push({ ...doc.data(), id: doc.id });
-			});
-				dispatch(userEducation(docs));
-		})
-	}
+		dispatch(userEducation(cvData.education));
+	};
 }
 
 
@@ -24,3 +17,4 @@ export const userEducation = (education) => {
 	}
 
 }
+

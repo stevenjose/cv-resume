@@ -1,17 +1,10 @@
 import { types } from '../types/types';
-import { db } from '../firebase';
+import cvData from '../data/cv-data.json';
 
-// redux thunk para method async
-export const userPortafolioFetch = (indice) =>{
+export const userPortafolioFetch = () => {
 	return (dispatch) => {
-		const docs = [];
-		db.collection(indice).onSnapshot((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				docs.push({ ...doc.data(), id: doc.id });
-			});
-				dispatch(userPortafolio(docs));
-		})
-	}
+		dispatch(userPortafolio(cvData.projects));
+	};
 }
 
 export const userPortafolio = (portafolio) => {
@@ -23,3 +16,4 @@ export const userPortafolio = (portafolio) => {
 	}
 
 }
+

@@ -31,7 +31,7 @@ const Certificate = () => {
 
   return (
     <div className='title mt-4'>
-      <i className='fa fa-trophy'></i>
+      <i className='fa fa-certificate'></i>
       <h3 className="mt-4">
         Certificados
         <i className={ etiquetaMas } onClick={ verMas } style={{float: 'right'}}></i>
@@ -46,9 +46,17 @@ const Carga = (certificate)=> {
 
       return (certificate.map((cert) =>{
              return <div className='item' key={cert.id}>
-                <h3>{cert.name} @ {cert.institution} <span>{cert.date}</span></h3>
-                <p>{cert.description}</p>
-                <a href={ cert.url } className="btn btn-outline-dark" target="_blank"> Ver certificado </a>
+                <h3>
+                  {cert.title}
+                  {cert.issueDate && <span>{cert.issueDate}</span>}
+                </h3>
+                <p><i className='fa fa-building'></i> {cert.issuer}</p>
+                {cert.link
+                  ? <a href={cert.link} className="btn btn-outline-dark" target="_blank" rel="noopener noreferrer">
+                      <i className='fa fa-external-link'></i> Ver certificado
+                    </a>
+                  : null
+                }
             </div>
           })
       )
@@ -56,3 +64,4 @@ const Carga = (certificate)=> {
 
 
 export default Certificate;
+

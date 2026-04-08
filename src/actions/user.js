@@ -1,29 +1,32 @@
 import { types } from "../types/types";
-import { db } from "../firebase";
 import img1 from "../assets/img/jgla.jpeg";
+import cvData from "../data/cv-data.json";
 
-// redux thunk para method async
-export const userFetch = (indice) => {
-  return async (dispatch) => {
-    const docs = await loadUser(indice);
-    dispatch(user(img1, docs[0]));
+export const userFetch = () => {
+  return (dispatch) => {
+    const { personal } = cvData;
+    const perfil = {
+      name: personal.name,
+      profession: personal.title,
+      bio: personal.summary,
+      address: personal.location,
+      email: personal.email,
+      phone: personal.phone,
+    };
+    dispatch(user(img1, perfil));
   };
 };
 
-export const loadUser = async (indice) => {
-  try {
-    const userSnap = await db.collection(indice).get();
-    const docs = [];
-    userSnap.forEach((doc) => {
-      docs.push({
-        id: doc.id,
-        ...doc.data(),
-      });
-    });
-    return docs;
-  } catch (error) {
-    return [];
-  }
+export const loadUser = async () => {
+  const { personal } = cvData;
+  return [{
+    name: personal.name,
+    profession: personal.title,
+    bio: personal.summary,
+    address: personal.location,
+    email: personal.email,
+    phone: personal.phone,
+  }];
 };
 
 export const user = (avatar, perfil) => ({
