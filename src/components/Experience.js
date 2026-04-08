@@ -86,7 +86,7 @@ const Experience = () => {
 
 const Carga = (experience, classes) => {
   return experience.map((exp) => {
-    const jobs = exp.jobTitle + ' @ ' + exp.company;
+    const jobs = `${exp.jobTitle} @ ${exp.company}`;
     return (
       <div className={"mt-4 text-center col-md-6"} key={exp.id}>
         <Card className={"shadow p-3 bg-gradient-primary mt-4 rounded"}>
