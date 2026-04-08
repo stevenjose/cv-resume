@@ -29,7 +29,7 @@ export const  Skills = () => {
         <div className="mt-4">
           {error ? <p>Error al cargar las habilidades.</p>
            : loading ? <Loading />
-           : skillsData.length > 0 ? Carga(skillsData) : <Loading />}
+           : skillsData.length > 0 ? Carga(skillsData) : <p>No hay habilidades disponibles.</p>}
         </div>
       )
     }
