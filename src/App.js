@@ -5,6 +5,7 @@ import Education from './components/Education';
 import Certificate from './components/Certificate';
 import {Portafolio} from './components/Portafolio';
 import { Skills } from './components/Skills';
+import Languages from './components/Languages';
 import {CargarData} from './components/CargarData';
 import { useSelector } from 'react-redux';
 import { UserHook }   from './hooks/UserHook';
@@ -72,6 +73,8 @@ function Home({ person }) {
               <Certificate />
               <hr/>
               <Portafolio />
+              <hr/>
+              <Languages />
               <Skills skills={person.skills} />
             </div>
         </div>

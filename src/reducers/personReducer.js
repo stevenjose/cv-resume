@@ -1,64 +1,73 @@
 
 import { types } from "../types/types";
+import cvData from "../data/cvData";
 
+// Static CV data is used as the initial state so the app renders
+// immediately without waiting for Firebase.  Firebase responses
+// override individual slices only when they return non-empty arrays.
 const initState = {
-	avatar: '',
-	perfil: '',
-	social: [],
-	experience: '',
-	portafolio: '',
-	education: '',
-	certificate: '',
-	skills: ''
+	avatar:      cvData.avatar,
+	perfil:      cvData.perfil,
+	social:      cvData.social,
+	experience:  cvData.experience,
+	portafolio:  cvData.portafolio,
+	education:   cvData.education,
+	certificate: cvData.certificate,
+	skills:      cvData.skills,
+	languages:   cvData.languages,
 }
 
 export const personReducer = (state = initState, action) => {
 	switch (action.type) {
 		case types.userBio:
 			return {
-				avatar: action.payload.avatar,
-				perfil: action.payload.perfil,
-			    social: [
-			      {name: 'github', url: 'https://github.com/stevenjose/'},
-			      {name: 'linkedin', url: 'https://www.linkedin.com/in/joselopezarias/'},
-			    ]
+				...state,
+				avatar: action.payload.avatar || state.avatar,
+				perfil: action.payload.perfil || state.perfil,
+				social: state.social,
 			}
 
 		case types.userExperience:
-
-			return 	{
-					   ...state,
-					   experience: action.payload.experience
-					}
+			return {
+				...state,
+				experience: action.payload.experience && action.payload.experience.length > 0
+					? action.payload.experience
+					: state.experience,
+			}
 
 		case types.userPortafolio:
-
-			return 	{
-					   ...state,
-					   portafolio: action.payload.portafolio
-					}
+			return {
+				...state,
+				portafolio: action.payload.portafolio && action.payload.portafolio.length > 0
+					? action.payload.portafolio
+					: state.portafolio,
+			}
 
 		case types.userEducation:
-
-			return 	{
-					   ...state,
-					   education: action.payload.education
-					}
+			return {
+				...state,
+				education: action.payload.education && action.payload.education.length > 0
+					? action.payload.education
+					: state.education,
+			}
 
 		case types.userCertificate:
+			return {
+				...state,
+				certificate: action.payload.certificate && action.payload.certificate.length > 0
+					? action.payload.certificate
+					: state.certificate,
+			}
 
-			return 	{
-					   ...state,
-					   certificate: action.payload.certificate
-					}
 		case types.userSkills:
+			return {
+				...state,
+				skills: action.payload.skills && action.payload.skills.length > 0
+					? action.payload.skills
+					: state.skills,
+			}
 
-			return 	{
-					   ...state,
-					   skills: action.payload.skills
-					}
 		default:
 			return state;
-			break;
 	}
 }

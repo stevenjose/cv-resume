@@ -6,7 +6,10 @@ import img1 from "../assets/img/jgla.jpeg";
 export const userFetch = (indice) => {
   return async (dispatch) => {
     const docs = await loadUser(indice);
-    dispatch(user(img1, docs[0]));
+    // Only dispatch when Firebase actually returns a profile document
+    if (docs && docs.length > 0) {
+      dispatch(user(img1, docs[0]));
+    }
   };
 };
 
