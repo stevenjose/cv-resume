@@ -48,23 +48,30 @@
       "last 1 safari version"
     ]
   },
-  "description": "Resume CV Template in ReactJS",
+  "description": "CV/Resume interactivo de Steven Jose – Desarrollador de Software en Mecalux (Barcelona). Stack: Java, Spring, Angular, Alfresco.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cv-resume"
+    "url": "git+https://github.com/stevenjose/cv-resume"
   },
   "keywords": [
-    "Gresume",
+    "resume",
+    "cv",
     "react",
-    "jsx"
+    "java",
+    "spring",
+    "angular",
+    "alfresco",
+    "mecalux",
+    "developer",
+    "barcelona"
   ],
-  "author": "Jose Lopez lopezajoseg@gmail.com",
+  "author": "Steven Jose <lopezajoseg@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cv-resume"
+    "url": "https://github.com/stevenjose/cv-resume/issues"
   },
-  "homepage": "https://github.com/cv-resume",
+  "homepage": "https://stevenjose.github.io/cv-resume",
   "devDependencies": {
     "redux-mock-store": "^1.5.4"
   }
