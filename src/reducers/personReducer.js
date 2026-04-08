@@ -1,15 +1,22 @@
 
 import { types } from "../types/types";
+import cvData from "../data/cv-data.json";
 
 const initState = {
 	avatar: '',
-	perfil: '',
+	perfil: {
+		name: cvData.personal.name,
+		profession: cvData.personal.title,
+		bio: cvData.personal.summary,
+		address: cvData.personal.location,
+		email: cvData.personal.email,
+	},
 	social: [],
-	experience: '',
-	portafolio: '',
-	education: '',
-	certificate: '',
-	skills: ''
+	experience: cvData.experience,
+	portafolio: cvData.portafolio,
+	education: cvData.education,
+	certificate: cvData.certificate,
+	skills: cvData.skills
 }
 
 export const personReducer = (state = initState, action) => {
