@@ -38,6 +38,17 @@ const useStyles = makeStyles((theme) => ({
 
 const logo = "/cv/img/";
 
+const MECALUX_TECH = [
+  { file: 'java.png',       alt: 'Java' },
+  { file: 'angular.png',    alt: 'Angular' },
+  { file: 'javascript.png', alt: 'JavaScript' },
+  { file: 'react.png',      alt: 'React' },
+  { file: 'node.png',       alt: 'Node.js' },
+  { file: 'php.png',        alt: 'PHP' },
+  { file: 'symfony.png',    alt: 'Symfony' },
+  { file: 'laravel.png',    alt: 'Laravel' },
+];
+
 const Experience = () => {
 
   const classes =    useStyles();
@@ -71,14 +82,15 @@ const Carga = (experience, classes)=>{
                       <CardTitle>{ jobs }</CardTitle>
                       {exp.jobDescription}
                       <p>
-                        <img className={ classes.image } src={urlBase+"javascript.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"php.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"angular.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"react.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"java.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"node.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"symfony.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"laravel.png"} alt={'logo'} />
+                        {MECALUX_TECH.map((tech) => (
+                          <img
+                            key={tech.alt}
+                            className={ classes.image }
+                            src={urlBase + tech.file}
+                            alt={tech.alt}
+                            title={tech.alt}
+                          />
+                        ))}
                       </p>
 
                     </CardBody>
