@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Loading from './Loading';
 import { Card, CardBody, CardTitle,CardFooter,Button } from "shards-react";
 import { useSelector } from 'react-redux';
+import useCVData from '../hooks/useCVData';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -35,28 +36,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
-const logo = "/cv/img/";
-
-const MECALUX_TECH = [
-  { file: 'java.png',       alt: 'Java' },
-  { file: 'angular.png',    alt: 'Angular' },
-  { file: 'javascript.png', alt: 'JavaScript' },
-  { file: 'react.png',      alt: 'React' },
-  { file: 'node.png',       alt: 'Node.js' },
-  { file: 'php.png',        alt: 'PHP' },
-  { file: 'symfony.png',    alt: 'Symfony' },
-  { file: 'laravel.png',    alt: 'Laravel' },
-];
-
 const Experience = () => {
 
-  const classes =    useStyles();
-  const useState = useSelector((state) => state.user);
+  const classes = useStyles();
+  const userState = useSelector((state) => state.user);
+  const { data: cvData, loading, error } = useCVData();
+
+  const experienceData = (userState.experience && userState.experience.length > 0)
+    ? userState.experience
+    : (cvData && cvData.experience ? cvData.experience : []);
+
   const myExperience = (
     <div>
       {
-        (useState.experience && useState.experience.length > 1) ? <div className="row mt-4 p-4">{(Carga(useState.experience, classes))}</div>: <Loading />
+        error ? <p>Error al cargar la experiencia.</p>
+        : loading ? <Loading />
+        : experienceData.length > 0
+          ? <div className="row mt-4 p-4">{Carga(experienceData, classes)}</div>
+          : <Loading />
       }
     </div>
   );
@@ -72,7 +69,6 @@ const Experience = () => {
 };
 
 const Carga = (experience, classes)=>{
-      const urlBase = '/cv-resume/img/';
       return (experience.map((exp) => {
 
           const jobs = exp.jobTitle + '@' + exp.company;
@@ -81,22 +77,17 @@ const Carga = (experience, classes)=>{
                     <CardBody>
                       <CardTitle>{ jobs }</CardTitle>
                       {exp.jobDescription}
-                      <p>
-                        {MECALUX_TECH.map((tech) => (
-                          <img
-                            key={tech.alt}
-                            className={ classes.image }
-                            src={urlBase + tech.file}
-                            alt={tech.alt}
-                            title={tech.alt}
-                          />
-                        ))}
-                      </p>
-
+                      {exp.technologies && (
+                        <p className="mt-2">
+                          {exp.technologies.map((tech) => (
+                            <span key={tech} className="badge badge-secondary mr-1">{tech}</span>
+                          ))}
+                        </p>
+                      )}
                     </CardBody>
                     <CardFooter className="text-center">
                       <Button squared theme={ ramdow('button') }>
-                        <a className={classes.link} href={exp.web} target="_blank">{ exp.company }</a>
+                        <a className={classes.link} href={exp.web} target="_blank" rel="noopener noreferrer">{ exp.company }</a>
                       </Button>
                     </CardFooter>
                   </Card>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Loading from './Loading';
 import { useSelector } from 'react-redux';
+import useCVData from '../hooks/useCVData';
 
 export const  Skills = () => {
   const userState = useSelector((state) => state.user);
+  const { data: cvData, loading, error } = useCVData();
   const [skillVer, setSkillVer] = useState(1);
   const [etiquetaMas, setEtiquetaMas] = useState('ver-mas fa fa-arrow-down');
   const verMas = () =>{
@@ -17,11 +19,17 @@ export const  Skills = () => {
     }
   }
 
+  const skillsData = (userState.skills && userState.skills.length > 0)
+    ? userState.skills
+    : (cvData && cvData.skills ? cvData.skills : []);
+
   const mySkillsVer = () =>{
     if(skillVer){
       return(
         <div className="mt-4">
-          {userState.skills && userState.skills.length > 0 ? (Carga(userState.skills)) : <Loading />}
+          {error ? <p>Error al cargar las habilidades.</p>
+           : loading ? <Loading />
+           : skillsData.length > 0 ? Carga(skillsData) : <Loading />}
         </div>
       )
     }
