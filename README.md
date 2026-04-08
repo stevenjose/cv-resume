@@ -1,23 +1,51 @@
-# Getting Started with Create React App
+# CV/Resume - Steven Jose
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CV/Resume interactivo desarrollado en ReactJS.
 
-## Available Scripts
+## 👨‍💻 Perfil Profesional
 
-In the project directory, you can run:
+**Desarrollador de Software** con experiencia en entornos empresariales de alta demanda.
 
-### `yarn start`
+- 📍 **Ubicación**: Barcelona, España
+- 🏢 **Empresa actual**: Mecalux (Junio 2022 – Presente)
+- 🕐 **Experiencia en Mecalux**: ~3 años y 10 meses
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Stack Tecnológico
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Backend
+- **Java** – Desarrollo de aplicaciones empresariales
+- **Spring Framework / Spring Boot** – Microservicios y APIs REST
+- **Testing de Mutación (PIT)** – Garantía de calidad en pruebas
+- **Docker** – Contenedores y despliegue
 
-### `yarn test`
+### Mensajería & Observabilidad
+- **RabbitMQ** – Message broker para arquitecturas orientadas a eventos
+- **Kibana / ELK Stack** – Logging y monitoreo de aplicaciones
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Gestión Documental
+- **Alfresco ECM** – Integración para gestión de documentos empresariales
 
+### Frontend
+- **Angular** – Aplicaciones SPA
+- **TypeScript** – Tipado estático
+- **RxJS** – Programación reactiva
 
-Ver ejemplo : [Live](https://stevenjose.github.io/cv-resume/)
+### Prácticas & Metodología
+- Clean Code & principios SOLID
+- Unit Testing, Integration Testing, Mutation Testing
+- CI/CD pipelines
+- Git & control de versiones
+
+## 🚀 Scripts Disponibles
+
+```bash
+yarn start    # Inicia la app en modo desarrollo (http://localhost:3000)
+yarn test     # Ejecuta los tests
+yarn build    # Genera build de producción
+```
+
+## 🔗 Links
+
+- [Ver CV en vivo](https://stevenjose.github.io/cv-resume/)
+- [GitHub](https://github.com/stevenjose/)
+- [LinkedIn](https://www.linkedin.com/in/joselopezarias/)
