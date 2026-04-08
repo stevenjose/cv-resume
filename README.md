@@ -1,23 +1,53 @@
-# Getting Started with Create React App
+# CV/Resume – Steven Jose
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Desarrollador de Software Senior** | Barcelona, España
 
-## Available Scripts
+CV interactivo construido con React, Redux y Firebase. Actualmente trabajando en **Mecalux** desde junio 2022.
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## 🧑‍💻 Experiencia Actual
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Mecalux** · Desarrollador de Software Senior  
+📍 Barcelona, España · 📅 Junio 2022 – Presente
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Stack Tecnológico
+- **Backend**: Java, Spring Boot, Testing de Mutación (PIT)
+- **Message Queue**: RabbitMQ
+- **Containerización**: Docker
+- **Monitoring**: Kibana / ELK Stack
+- **Gestión de Documentos**: Alfresco ECM
+- **Frontend**: Angular, TypeScript, RxJS
+- **Metodología**: Clean Code, SOLID, buenas prácticas
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Tecnologías del Proyecto
 
+- **Frontend**: React 17, Redux, React Router
+- **UI**: Material-UI, Bootstrap 5
+- **Backend**: Firebase / Firestore
+- **Despliegue**: GitHub Pages
 
-Ver ejemplo : [Live](https://stevenjose.github.io/cv-resume/)
+---
+
+## 📦 Scripts Disponibles
+
+```bash
+yarn start    # Inicia modo desarrollo en http://localhost:3000
+yarn build    # Compila para producción
+yarn test     # Ejecuta los tests
+```
+
+---
+
+## 🌐 Demo en Vivo
+
+[Ver CV en vivo](https://stevenjose.github.io/cv-resume/)
+
+---
+
+## 📬 Contacto
+
+- **GitHub**: [stevenjose](https://github.com/stevenjose/)
+- **LinkedIn**: [joselopezarias](https://www.linkedin.com/in/joselopezarias/)

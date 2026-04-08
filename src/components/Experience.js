@@ -1,132 +1,94 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Loading from './Loading';
-import { Card, CardBody, CardTitle,CardFooter,Button } from "shards-react";
 import { useSelector } from 'react-redux';
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    width: 180,
-    height:180,
-    padding: 10,
-    margin: 15,
-  },
-  image: {
-    width: 30,
-    height: 30,
-    margin: 5,
-    background: 'white'
-  },
-  p: {
-    fontSize: '3rem',
-  },
-  root: {
-    width: '100%',
-    maxWidth: 960,
-    backgroundColor: theme.palette.background.paper,
-    fontSize: '3rem'
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'white'
-  },
-  sombra:{
-    boxShadow: "-1px 3px 23px -6px rgba(102,33,102,1)"
-  }
-}));
-
-
-const logo = "/cv/img/";
+const TECH_ICONS = {
+  'Java':         { bg: '#f89820', label: 'Java' },
+  'Spring Boot':  { bg: '#6db33f', label: 'Spring' },
+  'Angular':      { bg: '#dd0031', label: 'Angular' },
+  'TypeScript':   { bg: '#3178c6', label: 'TS' },
+  'RxJS':         { bg: '#b7178c', label: 'RxJS' },
+  'Docker':       { bg: '#2496ed', label: 'Docker' },
+  'RabbitMQ':     { bg: '#ff6600', label: 'RabbitMQ' },
+  'Kibana':       { bg: '#005571', label: 'Kibana' },
+  'Alfresco':     { bg: '#1f5cac', label: 'Alfresco' },
+  'React':        { bg: '#61dafb', label: 'React' },
+  'Node.js':      { bg: '#339933', label: 'Node' },
+  'JavaScript':   { bg: '#f7df1e', label: 'JS' },
+};
 
 const Experience = () => {
+  const userState = useSelector((state) => state.user);
 
-  const classes =    useStyles();
-  const useState = useSelector((state) => state.user);
   const myExperience = (
     <div>
-      {
-        (useState.experience && useState.experience.length > 1) ? <div className="row mt-4 p-4">{(Carga(useState.experience, classes))}</div>: <Loading />
+      {userState.experience && userState.experience.length > 0
+        ? <div className="experience-grid">{renderExperience(userState.experience)}</div>
+        : <Loading />
       }
     </div>
   );
+
   return (
     <div className='title'>
       <i className='fa fa-briefcase'></i>
       <h2>Experiencia</h2>
-      <hr/>
+      <hr />
       {myExperience}
     </div>
-  )
-
+  );
 };
 
-const Carga = (experience, classes)=>{
-      const urlBase = '/cv-resume/img/';
-      return (experience.map((exp) => {
-
-          const jobs = exp.jobTitle + '@' + exp.company;
-          return <div className={"mt-4 text-center col-md-6"} key={exp.id}>
-                    <Card className={"shadow p-3 bg-gradient-primary mt-4 rounded"}>
-                    <CardBody>
-                      <CardTitle>{ jobs }</CardTitle>
-                      {exp.jobDescription}
-                      <p>
-                        <img className={ classes.image } src={urlBase+"javascript.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"php.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"angular.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"react.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"java.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"node.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"symfony.png"} alt={'logo'} />
-                        <img className={ classes.image } src={urlBase+"laravel.png"} alt={'logo'} />
-                      </p>
-
-                    </CardBody>
-                    <CardFooter className="text-center">
-                      <Button squared theme={ ramdow('button') }>
-                        <a className={classes.link} href={exp.web} target="_blank">{ exp.company }</a>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </div>
-
-        })
-      )
-  }
-
-const ramdow = (val) => {
-    let valor = [];
-    if(val == 'button')
-    {
-      valor =
-      [
-        "info",
-        "success",
-        "secondary",
-        "danger"
-      ]
-    }
-    if(val=='sombra'){
-      valor =
-      [
-        "bg-light",
-        "bg-white",
-        "bg-dark"
-      ]
-    }
-    if(val=='col'){
-      valor =
-      [
-        "col-md-10",
-        "col-md-8",
-        "col-md-6",
-        "col-md-5",
-        "col-md-4",
-      ]
-    }
-
-    var result = valor[Math.floor(Math.random() * 3)];
-    return result;
-  };
+const renderExperience = (experience) => {
+  return experience.map((exp) => (
+    <div className="experience-card" key={exp.id}>
+      <div className="experience-card-header">
+        <div>
+          <h3 className="experience-job-title">{exp.jobTitle}</h3>
+          <div className="experience-company">
+            <i className="fa fa-building" style={{ marginRight: 6 }}></i>
+            {exp.company}
+          </div>
+        </div>
+        <div className="experience-meta">
+          {exp.location && (
+            <span className="experience-location">
+              <i className="fa fa-map-marker" style={{ marginRight: 4 }}></i>
+              {exp.location}
+            </span>
+          )}
+          <span className="experience-period">
+            <i className="fa fa-calendar" style={{ marginRight: 4 }}></i>
+            {exp.startDate} – {exp.endDate}
+          </span>
+        </div>
+      </div>
+      <p className="experience-description">{exp.jobDescription}</p>
+      {exp.stack && exp.stack.length > 0 && (
+        <div className="experience-stack">
+          {exp.stack.map((tech) => {
+            const icon = TECH_ICONS[tech];
+            return (
+              <span
+                key={tech}
+                className="tech-badge"
+                style={{ backgroundColor: icon ? icon.bg : '#6c757d' }}
+              >
+                {icon ? icon.label : tech}
+              </span>
+            );
+          })}
+        </div>
+      )}
+      <div className="experience-card-footer">
+        <a className="experience-link" href={exp.web} target="_blank" rel="noopener noreferrer">
+          <i className="fa fa-external-link" style={{ marginRight: 6 }}></i>
+          {exp.company}
+        </a>
+      </div>
+    </div>
+  ));
+};
 
 export default Experience;
+
