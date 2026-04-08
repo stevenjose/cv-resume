@@ -456,6 +456,54 @@ body::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
   border-width: 3px;
 }
 
+/* ---- Tech badges ---- */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+.tech-badge {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(37,99,235,.08);
+  border: 1px solid rgba(37,99,235,.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .3px;
+  transition: var(--transition);
+}
+.tech-badge:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ---- Responsibilities list ---- */
+.exp-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.exp-list li {
+  font-size: .85rem;
+  color: var(--text-medium);
+  padding: 3px 0 3px 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.exp-list li::before {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-size: .7rem;
+  top: 5px;
+}
+
 /* ============================================
    RESPONSIVE — Tablet & Mobile
    ============================================ */
