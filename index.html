@@ -3,357 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>José Gregorio López Arias - Software Developer</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
+    <title>José Gregorio López Arias  - Cyberpunk Developer</title>
+    <!-- Fuente estilo Terminal / Hacker -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #0ea5e9; /* Azul cian */
-            --dark: #0f172a;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00ea;
+            --bg-dark: #050505;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
-            background-color: var(--bg-light);
+            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--bg-dark);
+            color: #fff;
             overflow-x: hidden;
+            /* Cursor estilo mirilla de videojuego */
+            cursor: crosshair;
         }
 
-        /* =========================================
-           EFECTO PARALLAX (HERO SECTION)
-           ========================================= */
-        .parallax-hero {
-            /* Imagen de fondo (puedes cambiar la URL por la que quieras) */
-            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                              url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            
-            /* LA MAGIA DEL PARALLAX ESTÁ EN ESTA LÍNEA */
-            background-attachment: fixed;
-            
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            
-            height: 100vh; /* Ocupa el 100% de la pantalla inicial */
+        /* --- EFECTO MONITOR CRT (Líneas de escaneo) --- */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            z-index: 9999;
+            pointer-events: none; /* Deja que los clics pasen a través */
+        }
+
+        /* --- CANVAS HIPERESPACIO --- */
+        #warp-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+        }
+
+        /* --- CONTENEDORES PRINCIPALES --- */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-            padding: 2rem;
-        }
-
-        .parallax-hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        .parallax-hero h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.8rem;
-            margin: 0 15px;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            font-size: 2rem;
-            color: rgba(255,255,255,0.5);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-
-        /* =========================================
-           CONTENIDO PRINCIPAL
-           ========================================= */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            color: var(--dark);
-            margin-bottom: 3rem;
-            text-align: center;
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 10;
         }
 
-        /* --- SKILLS GRID --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-bottom: 5rem;
+        /* --- EFECTO GLITCH EN EL NOMBRE --- */
+        .glitch-wrapper {
+            position: relative;
+        }
+        
+        .glitch-text {
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            animation: pulse 2s infinite;
         }
 
-        .skill-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s;
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-dark);
         }
 
-        .skill-box:hover {
-            transform: translateY(-5px);
+        .glitch-text::before {
+            left: 3px;
+            text-shadow: -2px 0 var(--neon-pink);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
 
-        .skill-box i {
+        .glitch-text::after {
+            left: -3px;
+            text-shadow: 2px 0 var(--neon-cyan);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 50% 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            40% { clip-path: inset(30% 0 20% 0); }
+            60% { clip-path: inset(70% 0 15% 0); }
+            80% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(5% 0 80% 0); }
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--neon-pink);
+            margin-top: 10px;
+            text-shadow: 0 0 10px var(--neon-pink);
+            letter-spacing: 5px;
+        }
+
+        .instruction {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- TARJETAS NEÓN (GRID) --- */
+        .section-title {
             font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            border-bottom: 2px dashed var(--neon-pink);
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 100%;
         }
 
-        .skill-box h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: rgba(5, 5, 5, 0.8);
+            border: 2px solid var(--neon-cyan);
+            padding: 2.5rem 2rem;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0, 243, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        /* Línea decorativa estilo sci-fi */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 234, 0.4), inset 0 0 30px rgba(255, 0, 234, 0.1);
+        }
+
+        .card:hover::before {
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--neon-cyan);
             margin-bottom: 1rem;
-            color: var(--dark);
+            transition: 0.3s;
+        }
+
+        .card:hover i {
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            margin-top: 1rem;
         }
 
         .tag {
-            background: var(--bg-light);
-            color: var(--text-light);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
+            background: transparent;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
             font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+            box-shadow: inset 0 0 5px rgba(0, 243, 255, 0.3);
+            transition: 0.3s;
         }
 
-        /* --- TIMELINE (EXPERIENCIA) --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+        .card:hover .tag {
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: inset 0 0 5px rgba(255, 0, 234, 0.3);
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: #e2e8f0;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-icon {
-            position: absolute;
-            left: 8px;
-            top: 0;
-            width: 28px;
-            height: 28px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 4px solid var(--bg-light);
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
-        }
-
-        .timeline-content {
-            background: white;
+        /* --- TIMELINE GAMER --- */
+        .quest-log {
+            background: rgba(5, 5, 5, 0.8);
+            border: 2px solid var(--neon-cyan);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-        }
-
-        .timeline-content h3 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark);
-            font-size: 1.4rem;
-        }
-
-        .timeline-content h4 {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .date {
-            display: inline-block;
-            background: var(--dark);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-            color: var(--text-light);
-        }
-
-        .timeline-content ul li {
+            margin-top: 2rem;
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .timeline-content ul li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
         }
         
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
+        .quest-log h3 { color: var(--neon-cyan); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .quest-log h4 { color: #fff; margin-bottom: 1rem; }
+        .quest-log p { color: #aaa; line-height: 1.7; font-size: 1.05rem; }
+        
+        .sys-req {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,0,234,0.1);
+            border-left: 4px solid var(--neon-pink);
         }
+
     </style>
 </head>
 <body>
 
-    <!-- EFECTO PARALLAX -->
-    <section class="parallax-hero">
-        <h1>José Gregorio López Arias</h1>
-        <h2>Desarrollador de Software</h2>
-        
-        <p style="max-width: 600px; margin-bottom: 2rem; font-size: 1.1rem; color: #cbd5e1;">
-            Apasionado por la tecnología, el Clean Code y las buenas prácticas. Transformando ideas complejas en soluciones escalables.
-        </p>
+    <!-- Capa CRT y Canvas -->
+    <div class="scanlines"></div>
+    <canvas id="warp-canvas"></canvas>
 
-        <div class="social-links">
-            <a href="https://github.com/stevenjose" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
-            <a href="#"><i class="fa-solid fa-location-dot"></i></a>
+    <div class="hero">
+        <div class="glitch-wrapper">
+            <h1 class="glitch-text" data-text="STEVEN JOSE">STEVEN JOSE</h1>
         </div>
+        <h2 class="subtitle">> SOFTWARE_ENGINEER_</h2>
+        <p class="instruction">[ ALERTA DE SISTEMA: HAZ CLIC PARA ACTIVAR HYPERDRIVE ]</p>
+        <p class="instruction" style="margin-top:10px; animation-delay: 0.5s;">SCROLL PARA VER STATS v</p>
+    </div>
 
-        <i class="fa-solid fa-chevron-down scroll-down"></i>
-    </section>
-
-    <!-- CONTENIDO QUE SCROLLEA POR ENCIMA -->
     <div class="container">
+        <h2 class="section-title">>> CORE_MODULES</h2>
         
-        <h2 class="section-title">Habilidades Técnicas</h2>
-        
-        <div class="skills-grid">
-            <div class="skill-box">
+        <div class="grid">
+            <div class="card">
                 <i class="fa-solid fa-server"></i>
-                <h3>Backend</h3>
+                <h3>[ SERVER_SIDE ]</h3>
                 <div class="tags">
-                    <span class="tag">Java 21+</span>
+                    <span class="tag">Java 8+</span>
                     <span class="tag">Spring Boot</span>
                     <span class="tag">Spring Data</span>
-                    <span class="tag">Spring Security</span>
                 </div>
             </div>
 
-            <div class="skill-box">
+            <div class="card">
                 <i class="fa-brands fa-angular"></i>
-                <h3>Frontend</h3>
+                <h3>[ CLIENT_SIDE ]</h3>
                 <div class="tags">
                     <span class="tag">Angular</span>
                     <span class="tag">TypeScript</span>
                     <span class="tag">RxJS</span>
-                    <span class="tag">HTML/CSS</span>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <i class="fa-brands fa-docker"></i>
-                <h3>DevOps & Herramientas</h3>
+            <div class="card">
+                <i class="fa-solid fa-terminal"></i>
+                <h3>[ SYS_OPS ]</h3>
                 <div class="tags">
                     <span class="tag">Docker</span>
                     <span class="tag">RabbitMQ</span>
-                    <span class="tag">Kibana (ELK)</span>
-                    <span class="tag">Alfresco ECM</span>
+                    <span class="tag">CI/CD</span>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">Experiencia Laboral</h2>
+        <h2 class="section-title" style="margin-top: 5rem;">>> CURRENT_QUEST</h2>
         
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-icon"></div>
-                <div class="timeline-content">
-                    <h3>Desarrollador de Software</h3>
-                    <h4>Mecalux | Barcelona, España</h4>
-                    <span class="date">Junio 2022 – Presente</span>
-                    <ul>
-                        <li><strong>Backend:</strong> Desarrollo robusto utilizando Java, Spring Boot, Spring Data y Spring Security.</li>
-                        <li><strong>Frontend:</strong> Creación de interfaces dinámicas con Angular, TypeScript y programación reactiva (RxJS).</li>
-                        <li><strong>Arquitectura y DevOps:</strong> Gestión de mensajería con RabbitMQ y contenerización de aplicaciones con Docker.</li>
-                        <li><strong>Monitoreo y Gestión:</strong> Uso del stack ELK (Kibana) para monitorización y Alfresco ECM para la gestión documental.</li>
-                        <li><strong>Calidad (QA):</strong> Implementación de testing de mutación (PIT), tests unitarios e integración (JUnit, Mockito) aplicando Clean Code y SOLID.</li>
-                    </ul>
-                </div>
+        <div class="quest-log">
+            <h3>Desarrollador de Software</h3>
+            <h4>@ Mecalux | Nivel: Senior | Ubicación: Barcelona</h4>
+            <p>
+                Despliegue y mantenimiento de arquitecturas escalables. Integración de mensajería con RabbitMQ y contenerización de microservicios con Docker.
+                Aplicación de Clean Code, principios SOLID y aseguramiento de calidad con Mutation Testing.
+            </p>
+            <div class="sys-req">
+                <strong>OBJETIVO ACTUAL:</strong> Transformar lógica de negocio compleja en código limpio, mantenible y de alto rendimiento.
             </div>
         </div>
-
     </div>
 
-    <footer>
-        <p>© 2026 Steven Jose - Construido con HTML y CSS</p>
-    </footer>
+    <script>
+        // ==========================================
+        // MOTOR GRÁFICO: WARP SPEED 3D (Hiperespacio)
+        // ==========================================
+        const canvas = document.getElementById('warp-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let stars = [];
+        const numStars = 800; // Cantidad de estrellas
+        let speed = 2; // Velocidad normal
+        let targetSpeed = 2;
+        const fov = 300; // Campo de visión 3D
+        
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        
+        window.addEventListener('resize', resize);
+        resize();
 
+        // Crear estrellas en un espacio 3D
+        for(let i = 0; i < numStars; i++) {
+            stars.push({
+                x: (Math.random() - 0.5) * 2000,
+                y: (Math.random() - 0.5) * 2000,
+                z: Math.random() * 2000,
+                pz: 0
+            });
+        }
+
+        // Bucle de animación
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Efecto estela (Motion Blur)
+            ctx.fillStyle = `rgba(5, 5, 5, ${speed > 10 ? 0.2 : 0.6})`;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Suavizar la transición de velocidad
+            speed += (targetSpeed - speed) * 0.05;
+
+            const cx = width / 2;
+            const cy = height / 2;
+
+            stars.forEach(star => {
+                star.pz = star.z;
+                star.z -= speed;
+
+                // Si la estrella nos sobrepasa, la mandamos al fondo
+                if (star.z < 1) {
+                    star.x = (Math.random() - 0.5) * 2000;
+                    star.y = (Math.random() - 0.5) * 2000;
+                    star.z = 2000;
+                    star.pz = 2000;
+                }
+
+                // Proyección 3D a 2D
+                const sx = (star.x / star.z) * fov + cx;
+                const sy = (star.y / star.z) * fov + cy;
+                const px = (star.x / star.pz) * fov + cx;
+                const py = (star.y / star.pz) * fov + cy;
+
+                // Dibujar línea desde la posición anterior a la nueva (Estela láser)
+                ctx.beginPath();
+                ctx.moveTo(px, py);
+                ctx.lineTo(sx, sy);
+                
+                // Color dependiendo de la velocidad
+                if(speed > 10) {
+                    ctx.strokeStyle = Math.random() > 0.5 ? '#00f3ff' : '#ff00ea'; // Neón en hipervelocidad
+                    ctx.lineWidth = (1 - star.z / 2000) * 4;
+                } else {
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = (1 - star.z / 2000) * 2;
+                }
+                
+                ctx.stroke();
+            });
+        }
+
+        animate();
+
+        // ==========================================
+        // INTERACCIÓN: HYPERDRIVE AL HACER CLIC
+        // ==========================================
+        window.addEventListener('mousedown', () => {
+            targetSpeed = 50; // ¡Velocidad de la luz!
+            document.body.style.filter = "contrast(150%) brightness(120%)"; // Efecto flash
+        });
+
+        window.addEventListener('mouseup', () => {
+            targetSpeed = 2; // Vuelve a la normalidad
+            document.body.style.filter = "none";
+        });
+        
+        // Soporte táctil para móviles
+        window.addEventListener('touchstart', () => { targetSpeed = 50; });
+        window.addEventListener('touchend', () => { targetSpeed = 2; });
+
+    </script>
 </body>
 </html>
